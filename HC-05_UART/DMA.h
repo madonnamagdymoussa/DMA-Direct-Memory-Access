@@ -6,7 +6,9 @@
 
 void DMA_ConfigureControlTableBaseAddress(void *ptControlTable);
 void DMA_PeripheralInitialization();
-void DMA_ChannelInitialization(DMAChannelNum_t ChannelNum, DMA_ConfigurationChannel_t* PtrDMAConfig);
+//void DMA_ChannelInitialization(DMAChannelNum_t ChannelNum, DMA_ConfigurationChannel_t* PtrDMAConfig);
+
+void DMA_ConfigChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig);
 
 void DMA_ConfigureChannelSoftwareRequest(DMA_SoftwareRequestMode_t RequestMode,DMAChannelNum_t ChannelNum);
 void DMA_ConfigurePriority(DMAConfigurePrioChannel_t ConfigurePrioChannel, DMAChannelNum_t ChannelNum);

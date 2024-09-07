@@ -14,8 +14,8 @@ void HC05_Initialization_DMA(void){
 
  UART_Initialization(&UARTChannel1_Config, GPIO_AFSELUARTConfig_ArrPtrStruct[1]);
  DMA_PeripheralInitialization();
- DMA_ChannelInitialization(DMAChannel_9, DMA_ChannelsConfigTX[1]);
- DMA_ChannelInitialization(DMAChannel_8, DMA_ChannelsConfigRX[1]);
+// DMA_ChannelInitialization(DMAChannel_9, DMA_ChannelsConfigTX[1]);
+ //DMA_ChannelInitialization(DMAChannel_8, DMA_ChannelsConfigRX[1]);
 
 }
 

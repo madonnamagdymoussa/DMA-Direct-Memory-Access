@@ -320,7 +320,7 @@ volatile static u32_t *DMA_ChannelMapSelectRegisters[4]={
 
 void DMA_PeripheralInitialization(){
 
-    /*********************************STEP1***************************************/
+
       /*Enable the DMA clock*/
      RCGCDMA_REG->Bits.DMAModuleRunModeClockGatingControl=1;
 
@@ -337,19 +337,29 @@ void DMA_PeripheralInitialization(){
 }
 
 
-void DMA_ChannelInitialization(DMAChannelNum_t ChannelNum, DMA_ConfigurationChannel_t* PtrDMAConfig){
+void DMA_ConfigChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
 
-    DMA_ConfigureChannelInterrupt(EnableInterrupt, PtrDMAConfig->ChannelNum);
-    DMAChannelUseBurstClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
-    DMAChannelPrimaryAlternateClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
-    DMAChannelRequestMaskClear |=(1<<(PtrDMAConfig->ChannelNum));
-    DMA_AssignChannel(PtrDMAConfig->ChannelNum, PtrDMAConfig->EncodingNum);
+    /*********************************STEP1***************************************/
+    /*set the channel to High priority or Default priority*/
     DMA_ConfigurePriority(PtrDMAConfig->PrioChannel, PtrDMAConfig->ChannelNum);
 
+    /*********************************STEP2***************************************/
+    /*select the primary channel control structure for this transfer*/
+    DMAChannelPrimaryAlternateClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
+
+    /*********************************STEP3***************************************/
+    /*allow the μDMA controller to respond to single and burst requests*/
+    DMAChannelUseBurstClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
+
+    /*********************************STEP4***************************************/
+    /*allow the μDMA controller to recognize requests for this channel*/
+    DMAChannelRequestMaskClear |=(1<<(PtrDMAConfig->ChannelNum));
+
+
+    DMA_ConfigureChannelInterrupt(EnableInterrupt, PtrDMAConfig->ChannelNum);
+    DMA_AssignChannel(PtrDMAConfig->ChannelNum, PtrDMAConfig->EncodingNum);
+
 }
-/************************************END of Initialization Functions********************************************************/
-
-
 
 void DMA_ConfigureControlTableBaseAddress(void *ptControlTable){
 

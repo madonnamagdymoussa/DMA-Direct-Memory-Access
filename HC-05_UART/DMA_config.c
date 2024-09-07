@@ -41,7 +41,7 @@ DMA_ConfigurationChannel_t  DMAChannel22_UARTChannel1RX={
      Byte_SrcData,
      BasicMode,
      SetDefaultPriorityChannel,
-     EncodingNum_1
+     EncodingNum_0
 };
 
 DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
@@ -51,8 +51,8 @@ DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
      Byte_DestData,
      Byte_SrcData,
      BasicMode,
-     SetDefaultPriorityChannel,
-     EncodingNum_1
+     SetHighPriorityChannel,
+     EncodingNum_0
 };
 /****************************************************************************************************/
 DMA_ConfigurationChannel_t DMAChannel0_UARTChannel2RX={
