@@ -52,7 +52,10 @@ DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
      Byte_SrcData,
      BasicMode,
      SetHighPriorityChannel,
-     EncodingNum_0
+     EncodingNum_0,
+     _1_Transfer ,
+     DMA_SingleRequest,
+     2
 };
 /****************************************************************************************************/
 DMA_ConfigurationChannel_t DMAChannel0_UARTChannel2RX={

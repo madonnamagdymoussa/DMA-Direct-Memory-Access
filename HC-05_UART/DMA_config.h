@@ -152,6 +152,11 @@ typedef enum{
     _1024_Transfers
 }DMA_ConfigArbitSize_t;
 
+typedef enum{
+    DMA_SingleRequest,
+    DMA_BurstRequest
+}DMA_ConfigRequestType_t;
+
 
 typedef struct{
     DMAChannelNum_t ChannelNum;
@@ -163,6 +168,9 @@ typedef struct{
     DMAConfigurePrioChannel_t PrioChannel;
     DMAEncodingNum_t EncodingNum;
     DMA_ConfigArbitSize_t ArbitSize;
+    DMA_ConfigRequestType_t RequestType;
+    u32_t TransferSize;
+
 }DMA_ConfigurationChannel_t;
 
 //Array of pointers to structures

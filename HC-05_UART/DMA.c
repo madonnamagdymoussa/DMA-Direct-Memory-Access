@@ -314,6 +314,8 @@ volatile static u32_t *DMA_ChannelMapSelectRegisters[4]={
 
 
 
+
+
 /************************************************************************************************************************/
 /*                                      Initialization Functions                                                        */
 /************************************************************************************************************************/
@@ -337,7 +339,7 @@ void DMA_PeripheralInitialization(){
 }
 
 
-void DMA_ConfigChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
+void DMA_EnableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
 
     /*********************************STEP1***************************************/
     /*set the channel to High priority or Default priority*/
@@ -355,9 +357,19 @@ void DMA_ConfigChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
     /*allow the μDMA controller to recognize requests for this channel*/
     DMAChannelRequestMaskClear |=(1<<(PtrDMAConfig->ChannelNum));
 
-
-    DMA_ConfigureChannelInterrupt(EnableInterrupt, PtrDMAConfig->ChannelNum);
+    /*********************************STEP5***************************************/
     DMA_AssignChannel(PtrDMAConfig->ChannelNum, PtrDMAConfig->EncodingNum);
+
+    /*********************************STEP6***************************************/
+    DMA_ConfigureChannelInterrupt(EnableInterrupt, PtrDMAConfig->ChannelNum);
+}
+
+void DMA_DisableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
+
+    if(SetHighPriorityChannel == PtrDMAConfig->PrioChannel){
+
+        DMAChannelPriorityClear_Reg |= (1<< (PtrDMAConfig->ChannelNum) );
+    }
 
 }
 
@@ -381,10 +393,12 @@ void DMA_ChannelControlStructureSet(DMA_ConfigurationChannel_t* ptrConfig, u32_t
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.SRCINC=ptrConfig->SrcAddressIncrement;
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.SRCSIZE=ptrConfig->SrcDataSize;
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.XFERMODE=ptrConfig->TransferMode;
-    (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.XFERSIZE=10;
+    (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.XFERSIZE=ptrConfig->TransferSize;
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.ARBSIZE=ptrConfig->ArbitSize;
 
 }
+
+//void DMA_
 
 
 void DMA_ConfigureChannelSoftwareRequest(DMA_SoftwareRequestMode_t RequestMode,DMAChannelNum_t ChannelNum){

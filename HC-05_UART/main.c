@@ -32,7 +32,7 @@ int main(void)
 
       DMA_PeripheralInitialization();
 
-      DMA_ConfigChannelAttributes(DMA_ChannelsConfigTX[1]);
+      DMA_EnableChannelAttributes(DMA_ChannelsConfigTX[1]);
       //DMA_ChannelInitialization(DMAChannel_8, DMA_ChannelsConfigRX[1]);
 
       DMA_ConfigurePriority(SetHighPriorityChannel, DMAChannel_9);
