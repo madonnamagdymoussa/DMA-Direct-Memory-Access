@@ -237,7 +237,7 @@ typedef union{
 }DMACHIS_Reg;
 
 #define RCGCDMA_REG ((RCGCDMA_Reg volatile*)(0x400FE000 + 0x60C) )
-#define DMA_ChannelControlBasePointer   ((volatile DMACTLBASE_Reg*)(DMA_BASE+DMACTLBASE_OFFSET))
+#define DMA_ChannelControlBasePointer   ( (volatile DMACTLBASE_Reg*)(DMA_BASE+DMACTLBASE_OFFSET) )
 
 #define SourceAddressPointer_0  ((volatile u32_t*)(ChannelControl0_BaseAddress))
 #define SourceAddressPointer_1  ((volatile u32_t*)(ChannelControl1_BaseAddress))

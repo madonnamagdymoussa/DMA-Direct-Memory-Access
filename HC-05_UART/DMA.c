@@ -332,7 +332,7 @@ void DMA_PeripheralInitialization(){
 
      //DMA_ConfigureControlTableBaseAddress(&ui8ControlTable[0]);
      /*********************************STEP3***************************************/
-     DMA_ChannelControlBasePointer->Bits.ChannelControlBaseAddress=(u32_t)ui8ControlTable;
+     (DMA_ChannelControlBasePointer)->Register=(u32_t)ui8ControlTable;
 
      /*********************************STEP4***************************************/
      DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
@@ -370,6 +370,13 @@ void DMA_DisableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
 
         DMAChannelPriorityClear_Reg |= (1<< (PtrDMAConfig->ChannelNum) );
     }
+
+    if(DMA_BurstRequest == PtrDMAConfig->RequestType){
+
+        DMAChannelUseBurstClear_Reg |=(1<< (PtrDMAConfig->ChannelNum) );
+    }
+
+    DMAChannelRequestMaskClear |=(1<< (PtrDMAConfig->ChannelNum) );
 
 }
 

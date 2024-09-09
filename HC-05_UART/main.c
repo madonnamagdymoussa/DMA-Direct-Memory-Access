@@ -6,9 +6,9 @@
 #include "GPTM.h"
 #include "DMA.h"
 #include "UART.h"
-unsigned char charater1;
-unsigned char *ptr_charater1=&charater1;
-
+u32_t charater1=0x55555555;
+u32_t *ptr_charater1=&charater1;
+//extern  u32_t* const SourceAddressPointerRegisters[32];
 int main(void)
 {
 
@@ -28,16 +28,17 @@ int main(void)
       GPTM_GenerateDelay(GPTM_Config_ArrPtrStruct[0], 10, milli_Sec);*/
 
      /*=======================Initialization=======================*/
-      UART_Initialization(&UARTChannel1_Config, GPIO_AFSELUARTConfig_ArrPtrStruct[1]);
+      UART_Init0ialization(&UARTChannel1_Config, GPIO_AFSELUARTConfig_ArrPtrStruct[1]);
 
       DMA_PeripheralInitialization();
 
+      DMA_DisableChannelAttributes(DMA_ChannelsConfigTX[1]);
+
       DMA_EnableChannelAttributes(DMA_ChannelsConfigTX[1]);
-      //DMA_ChannelInitialization(DMAChannel_8, DMA_ChannelsConfigRX[1]);
 
       DMA_ConfigurePriority(SetHighPriorityChannel, DMAChannel_9);
       DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_9);
-
+      UART_Transmit_DMA(UART_Channel1,  ptr_charater1, DMAChannel_9);
 
       /*
        * Prior to starting a transfer, a μDMA channel must be enabled by setting the appropriate bit in the

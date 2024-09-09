@@ -10,6 +10,7 @@ void DMA_PeripheralInitialization();
 
 //void DMA_ConfigChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig);
 void DMA_EnableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig);
+void DMA_DisableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig);
 
 void DMA_ConfigureChannelSoftwareRequest(DMA_SoftwareRequestMode_t RequestMode,DMAChannelNum_t ChannelNum);
 void DMA_ConfigurePriority(DMAConfigurePrioChannel_t ConfigurePrioChannel, DMAChannelNum_t ChannelNum);
