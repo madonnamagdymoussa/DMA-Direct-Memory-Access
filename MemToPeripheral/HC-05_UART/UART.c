@@ -30,6 +30,7 @@
   /************************************ Includes ************************************/
   extern unsigned char ui8ControlTable[1024];
   unsigned char UARTDMA_TxFlag=0;
+  unsigned char UARTDMA_RxFlag=0;
   /******************************************* ID Description of the Unit *********************************************************/
   // first number of ID signifies the module used (the UART  module takes number6, GPIO module takes number 3)
 
@@ -1135,7 +1136,7 @@
 
           *(DestinationAddressPointer23_UART)=(u32_t*)UART_DataRegisters[Channel];
 
-          *(UART1_UARTIFLS_Reg) |=(1<<0);
+         // *(UART1_UARTIFLS_Reg) |=(1<<0);
          (*UART_DMAControlRegisters[Channel]).bits.TransmitDMAEnable=1;
          (*UART_ControlRegisters[Channel]).bits.TransmitEnable=1;
          //(*UART_ControlRegisters[Channel]).bits.UARTEnable=1;
@@ -1144,9 +1145,12 @@
 
      void UART_Receive_DMA(UART_Channel_t Channel, u8_t *destAddressBuffer, DMAChannelNum_t DMAChannelNum){
 
+         UARTDMA_RxFlag=1;
          DMA_ChannelControlStructureSet(DMA_ChannelsConfigRX[Channel],(u32_t*)UART_DataRegisters[Channel],(u8_t*)destAddressBuffer );
+         *(SourceAddressPointer22_UART)=(u32_t*)UART_DataRegisters[Channel];
          (*UART_DMAControlRegisters[Channel]).bits.ReceiveDMAEnable=1;
          (*UART_ControlRegisters[Channel]).bits.ReceiveEnable =1;
+         UARTDMA_RxFlag=0;
          //(*UART_ControlRegisters[Channel]).bits.UARTEnable=1;
      }
 

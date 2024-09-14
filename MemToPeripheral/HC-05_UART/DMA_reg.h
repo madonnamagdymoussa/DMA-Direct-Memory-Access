@@ -382,6 +382,7 @@ typedef union{
 
 #define DestinationAddressPointer9_UART  ((volatile u32_t**)(ChannelControl9_BaseAddress + DMADSTENDP_OFFSET))
 #define DestinationAddressPointer23_UART ((volatile u32_t**)(ChannelControl23_BaseAddress + DMADSTENDP_OFFSET))
+#define SourceAddressPointer22_UART ((volatile u32_t**)(ChannelControl22_BaseAddress))
 
 
 #define AlternateDestinationAddressPointer_0  ((volatile u8_t**)(AlternateChannelControl0_BaseAddress + DMADSTENDP_OFFSET))

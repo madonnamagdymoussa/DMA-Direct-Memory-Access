@@ -14,6 +14,7 @@
 extern u8_t SourceBuffer_DMA[256];
 extern u8_t DestBuffer_DMA[256];
 extern unsigned char UARTDMA_TxFlag;
+extern unsigned char UARTDMA_RxFlag;
 /******************************************* ID Description of the Unit *********************************************************/
 // first number of ID signifies the module used (the DMA driver takes number 2)
 
@@ -173,7 +174,6 @@ DMA_SoftwareTransferHandler(){
 
   // if(1 ==(DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9) ){
        DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9 =1; //clear the interrupt
-
 
        DMA_PeripheralInitialization();
        DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[2] , &DestBuffer_DMA[2] );
@@ -510,7 +510,9 @@ void DMA_EnableChannel(DMAChannelNum_t ChannelNum){
 
 void DMA_ChannelControlStructureSet(DMA_ConfigurationChannel_t* ptrConfig, u8_t*SourceAddress , u8_t*DestAddress ){
 
+    if(0==UARTDMA_RxFlag){
     *(SourceAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)SourceAddress;
+    }
 
     if(0==UARTDMA_TxFlag){
     *(DestinationAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)DestAddress;
@@ -598,7 +600,7 @@ void DMA_AssignChannel(u8_t DMA_ChannelNum, DMAEncodingNum_t EncodingNum){
 
     u8_t RegisterNum=(u8_t)(DMA_ChannelNum/8);
     u8_t BitNum =((DMA_ChannelNum-(RegisterNum*8))*4) + EncodingNum;
-    BitNum--;
+    //BitNum--;
     *DMA_ChannelMapSelectRegisters[RegisterNum]|=(1<<BitNum);
 }
 

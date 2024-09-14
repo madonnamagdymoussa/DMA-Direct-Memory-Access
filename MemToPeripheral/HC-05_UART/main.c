@@ -11,7 +11,9 @@ u8_t charater1=0xAB;
 u8_t *ptr_charater1=&charater1;
 
 u8_t SourceBuffer_DMA[256]={0xD1,0xC2,0xB3,0xAF};
-u8_t DestBuffer_DMA[256];
+u8_t DestBufferA[4];
+u8_t DestBufferB[4];
+u8_t DestBuffer_DMA[3];
 
 //u8_t DMA_DestBufferA[4]={0xAB,0xCD,0x33,0x44};
 
@@ -33,25 +35,31 @@ int main(void)
 
       GPTM_GenerateDelay(GPTM_Config_ArrPtrStruct[0], 10, milli_Sec);*/
 
-     /*=======================Initialization=======================*/
+     //*******************Code for Mem To pheripheral Transmit *******************
      UART_Initialization(&UARTChannel1_Config, GPIO_AFSELUARTConfig_ArrPtrStruct[1]);
 
       DMA_PeripheralInitialization();
-
-      //DMA_DisableChannelAttributes(DMA_ChannelsConfigTX[1]);
 
       DMA_EnableChannelAttributes(DMA_ChannelsConfigTX[1]);
 
       DMA_ConfigurePriority(SetHighPriorityChannel, DMAChannel_23);
 
-     // DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
-     // DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_23);
+      DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
+      DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_23);
 
-      UART_Transmit_DMA(UART_Channel1,  &SourceBuffer_DMA[1], DMAChannel_23);
+      UART_Transmit_DMA(UART_Channel1,  &SourceBuffer_DMA[2], DMAChannel_23);
       DMA_EnableChannel(DMAChannel_23);
       DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_23);
 
-     //*******************Code for Mem To Mem*******************
+
+      //*******************Code for Mem To pheripheral Receive *******************
+
+      DMA_EnableChannelAttributes(DMA_ChannelsConfigRX[1]);
+      UART_Receive_DMA(UART_Channel1, &DestBufferA[2], DMAChannel_22);
+      DMA_EnableChannel(DMAChannel_22);
+      DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
+
+      //*******************Code for Mem To Mem*******************
 
      /*DMA_PeripheralInitialization();
 
