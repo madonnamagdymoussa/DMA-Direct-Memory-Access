@@ -11,7 +11,9 @@
 
 #include "NVIC.h"
 #include<math.h>
-
+extern u8_t SourceBuffer_DMA[256];
+extern u8_t DestBuffer_DMA[256];
+extern unsigned char UARTDMA_TxFlag;
 /******************************************* ID Description of the Unit *********************************************************/
 // first number of ID signifies the module used (the DMA driver takes number 2)
 
@@ -169,9 +171,17 @@ DMA_SoftwareTransferHandler(){
        }
      }*/
 
-   if(1 ==(DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9) ){
+  // if(1 ==(DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9) ){
        DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9 =1; //clear the interrupt
-    }
+
+
+       DMA_PeripheralInitialization();
+       DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[2] , &DestBuffer_DMA[2] );
+       DMA_EnableChannel(DMAChannel_30);
+       DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_30);
+
+
+   // }
 
  }
 
@@ -233,6 +243,43 @@ volatile  u8_t** const SourceAddressPointerRegisters[32]={
 };
 
 
+volatile  u8_t** const AlternateSourceAddressPointerRegisters[32]={
+
+   AlternateSourceAddressPointer_0,
+   AlternateSourceAddressPointer_1,
+   AlternateSourceAddressPointer_2,
+   AlternateSourceAddressPointer_3,
+   AlternateSourceAddressPointer_4,
+   AlternateSourceAddressPointer_5,
+   AlternateSourceAddressPointer_6,
+   AlternateSourceAddressPointer_7,
+   AlternateSourceAddressPointer_8,
+   AlternateSourceAddressPointer_9,
+   AlternateSourceAddressPointer_10,
+   AlternateSourceAddressPointer_11,
+   AlternateSourceAddressPointer_12,
+   AlternateSourceAddressPointer_13,
+   AlternateSourceAddressPointer_14,
+   AlternateSourceAddressPointer_15,
+   AlternateSourceAddressPointer_16,
+   AlternateSourceAddressPointer_17,
+   AlternateSourceAddressPointer_18,
+   AlternateSourceAddressPointer_19,
+   AlternateSourceAddressPointer_20,
+   AlternateSourceAddressPointer_21,
+   AlternateSourceAddressPointer_22,
+   AlternateSourceAddressPointer_23,
+   AlternateSourceAddressPointer_24,
+   AlternateSourceAddressPointer_25,
+   AlternateSourceAddressPointer_26,
+   AlternateSourceAddressPointer_27,
+   AlternateSourceAddressPointer_28,
+   AlternateSourceAddressPointer_29,
+   AlternateSourceAddressPointer_30,
+   AlternateSourceAddressPointer_31
+};
+
+
 volatile  u8_t ** const DestinationAddressPointerRegisters[32]={
     DestinationAddressPointer_0,
     DestinationAddressPointer_1,
@@ -266,6 +313,78 @@ volatile  u8_t ** const DestinationAddressPointerRegisters[32]={
     DestinationAddressPointer_29,
     DestinationAddressPointer_30,
     DestinationAddressPointer_31
+};
+
+
+volatile  u8_t ** const AlternateDestinationAddressPointerRegisters[32]={
+   AlternateDestinationAddressPointer_0,
+   AlternateDestinationAddressPointer_1,
+   AlternateDestinationAddressPointer_2,
+   AlternateDestinationAddressPointer_3,
+   AlternateDestinationAddressPointer_4,
+   AlternateDestinationAddressPointer_5,
+   AlternateDestinationAddressPointer_6,
+   AlternateDestinationAddressPointer_7,
+   AlternateDestinationAddressPointer_8,
+   AlternateDestinationAddressPointer_9,
+   AlternateDestinationAddressPointer_10,
+   AlternateDestinationAddressPointer_11,
+   AlternateDestinationAddressPointer_12,
+   AlternateDestinationAddressPointer_13,
+   AlternateDestinationAddressPointer_14,
+   AlternateDestinationAddressPointer_15,
+   AlternateDestinationAddressPointer_16,
+   AlternateDestinationAddressPointer_17,
+   AlternateDestinationAddressPointer_18,
+   AlternateDestinationAddressPointer_19,
+   AlternateDestinationAddressPointer_20,
+   AlternateDestinationAddressPointer_21,
+   AlternateDestinationAddressPointer_22,
+   AlternateDestinationAddressPointer_23,
+   AlternateDestinationAddressPointer_24,
+   AlternateDestinationAddressPointer_25,
+   AlternateDestinationAddressPointer_26,
+   AlternateDestinationAddressPointer_27,
+   AlternateDestinationAddressPointer_28,
+   AlternateDestinationAddressPointer_29,
+   AlternateDestinationAddressPointer_30,
+   AlternateDestinationAddressPointer_31
+};
+
+
+volatile static DMACHCTL_Reg * const AlternateDMA_ChannelControlWordRegisters[32]={
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_0,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_1,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_2,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_3,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_4,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_5,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_6,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_7,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_8,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_9,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_10,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_11,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_12,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_13,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_14,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_15,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_16,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_17,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_18,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_19,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_20,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_21,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_22,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_23,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_24,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_25,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_26,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_27,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_28,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_29,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_30,
+   (DMACHCTL_Reg*)AlternateDMA_ChannelControlWord_31
 };
 
 
@@ -314,8 +433,6 @@ volatile static u32_t *DMA_ChannelMapSelectRegisters[4]={
 
 
 
-
-
 /************************************************************************************************************************/
 /*                                      Initialization Functions                                                        */
 /************************************************************************************************************************/
@@ -351,7 +468,8 @@ void DMA_EnableChannelAttributes(DMA_ConfigurationChannel_t* PtrDMAConfig){
 
     /*********************************STEP3***************************************/
     /*allow the μDMA controller to respond to single and burst requests*/
-    DMAChannelUseBurstClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
+    //DMAChannelUseBurstClear_Reg |=(1<<(PtrDMAConfig->ChannelNum));
+    DMAChannelUseBurstSet_Reg |=(1<<(PtrDMAConfig->ChannelNum));
 
     /*********************************STEP4***************************************/
     /*allow the μDMA controller to recognize requests for this channel*/
@@ -392,14 +510,11 @@ void DMA_EnableChannel(DMAChannelNum_t ChannelNum){
 
 void DMA_ChannelControlStructureSet(DMA_ConfigurationChannel_t* ptrConfig, u8_t*SourceAddress , u8_t*DestAddress ){
 
-    //*SourceAddressPointerRegisters[ptrConfig->ChannelNum]=*SourceAddress;
-    //*DestinationAddressPointerRegisters[ptrConfig->ChannelNum]=*DestAddress;
-
-    //u8_t** PointerToPointer=SourceAddressPointer_30;
-    //* PointerToPointer=(u8_t*)SourceAddress;
-
     *(SourceAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)SourceAddress;
+
+    if(0==UARTDMA_TxFlag){
     *(DestinationAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)DestAddress;
+    }
 
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.DSTINC=ptrConfig->DestAddressIncrement;
     (*DMA_ChannelControlWordRegisters[ptrConfig->ChannelNum]).Bits.DSTSIZE=ptrConfig->DestDataSize;
@@ -411,7 +526,12 @@ void DMA_ChannelControlStructureSet(DMA_ConfigurationChannel_t* ptrConfig, u8_t*
 
 }
 
-//void DMA_
+void DMA_ChannelAlternateControlStructureSet(DMA_ConfigurationChannel_t* ptrConfig, u8_t*SourceAddress , u8_t*DestAddress){
+
+    *(AlternateSourceAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)SourceAddress;
+    *(AlternateDestinationAddressPointerRegisters[ptrConfig->ChannelNum])=(u8_t*)DestAddress;
+
+}
 
 
 void DMA_ConfigureChannelSoftwareRequest(DMA_SoftwareRequestMode_t RequestMode,DMAChannelNum_t ChannelNum){
@@ -445,6 +565,8 @@ void DMA_ConfigurePeripheralInterrupt(DMA_InterruptStatus Status){
 
 }
 
+
+
 void DMA_ConfigureChannelInterrupt(DMA_InterruptStatus Status, DMAChannelNum_t ChannelNum){
 
     switch(Status){
@@ -476,6 +598,7 @@ void DMA_AssignChannel(u8_t DMA_ChannelNum, DMAEncodingNum_t EncodingNum){
 
     u8_t RegisterNum=(u8_t)(DMA_ChannelNum/8);
     u8_t BitNum =((DMA_ChannelNum-(RegisterNum*8))*4) + EncodingNum;
+    BitNum--;
     *DMA_ChannelMapSelectRegisters[RegisterNum]|=(1<<BitNum);
 }
 

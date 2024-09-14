@@ -15,6 +15,7 @@ UART.obj: ../NVIC_config.h
 UART.obj: ../GPIO.h
 UART.obj: ../GPTM.h
 UART.obj: ../GPTM_config.h
+UART.obj: ../DMA_reg.h
 
 ../UART.c:
 
@@ -45,4 +46,6 @@ UART.obj: ../GPTM_config.h
 ../GPTM.h:
 
 ../GPTM_config.h:
+
+../DMA_reg.h:
 

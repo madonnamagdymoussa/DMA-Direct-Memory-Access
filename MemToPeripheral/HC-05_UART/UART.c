@@ -25,9 +25,11 @@
 
   #include "GPTM.h"
   #include "GPTM_config.h"
+
+ #include "DMA_reg.h"
   /************************************ Includes ************************************/
   extern unsigned char ui8ControlTable[1024];
-
+  unsigned char UARTDMA_TxFlag=0;
   /******************************************* ID Description of the Unit *********************************************************/
   // first number of ID signifies the module used (the UART  module takes number6, GPIO module takes number 3)
 
@@ -1127,11 +1129,17 @@
 
     void UART_Transmit_DMA(UART_Channel_t Channel, u8_t *SourceAddressBuffer, DMAChannelNum_t DMAChannelNum){
 
+          UARTDMA_TxFlag=1;
          //DMA_ChannelsConfigTX[Channel] --> array of pointers to structures
           DMA_ChannelControlStructureSet(DMA_ChannelsConfigTX[Channel], (u8_t*)SourceAddressBuffer ,(u32_t*)UART_DataRegisters[Channel]  );
+
+          *(DestinationAddressPointer23_UART)=(u32_t*)UART_DataRegisters[Channel];
+
+          *(UART1_UARTIFLS_Reg) |=(1<<0);
          (*UART_DMAControlRegisters[Channel]).bits.TransmitDMAEnable=1;
          (*UART_ControlRegisters[Channel]).bits.TransmitEnable=1;
          //(*UART_ControlRegisters[Channel]).bits.UARTEnable=1;
+         UARTDMA_TxFlag=0;
      }
 
      void UART_Receive_DMA(UART_Channel_t Channel, u8_t *destAddressBuffer, DMAChannelNum_t DMAChannelNum){

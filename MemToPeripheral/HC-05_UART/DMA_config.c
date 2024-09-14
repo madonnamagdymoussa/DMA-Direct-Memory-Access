@@ -40,23 +40,24 @@ DMA_ConfigurationChannel_t  DMAChannel22_UARTChannel1RX={
      Byte_DestData,
      Byte_SrcData,
      BasicMode,
-     SetDefaultPriorityChannel,
+     SetHighPriorityChannel,
      EncodingNum_0
 };
 
 DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
-     DMAChannel_9,
+     DMAChannel_23,
      NoIncrement_DestInc,
      NoIncrement_srcInc,
      Byte_DestData,
      Byte_SrcData,
      BasicMode,
      SetHighPriorityChannel,
-     EncodingNum_0,
+     EncodingNum_1,
      _1_Transfer ,
-     DMA_SingleRequest,
-     8
+     DMA_BurstRequest,
+     5
 };
+
 /****************************************************************************************************/
 DMA_ConfigurationChannel_t DMAChannel0_UARTChannel2RX={
      DMAChannel_0,
@@ -237,8 +238,8 @@ DMA_ConfigurationChannel_t  DMAChannel30_MemToMem={
      SetHighPriorityChannel,
      EncodingNum_0,
      _8_Transfers,
-     DMA_BurstRequest,
-     256
+     DMA_SingleRequest,
+     8
 };
 
 DMA_ConfigurationChannel_t *Pt_DMAChannel30_MemToMem=&DMAChannel30_MemToMem;

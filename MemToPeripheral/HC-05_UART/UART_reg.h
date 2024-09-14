@@ -391,4 +391,6 @@ typedef union {
 #define UART6_DMAControl_Reg       ((volatile UARTDMACTL*)(UART6_BASE+UARTDMACTL_OFFSET))
 #define UART7_DMAControl_Reg       ((volatile UARTDMACTL*)(UART7_BASE+UARTDMACTL_OFFSET))
 
+
+#define UART1_UARTIFLS_Reg        ((volatile u32_t*)(UART1_BASE+0x034))
 #endif /* UART_REG_H_ */

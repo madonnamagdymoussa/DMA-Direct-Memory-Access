@@ -32,36 +32,36 @@ typedef struct{
 }PRI_bits;
 
 
-#define NVIC_PRI0_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x400)
-#define NVIC_PRI1_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x404)
-#define NVIC_PRI2_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x408)
-#define NVIC_PRI3_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x40C)
-#define NVIC_PRI4_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x410)
-#define NVIC_PRI5_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x414)
-#define NVIC_PRI6_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x418)
-#define NVIC_PRI7_REG       ((volatile PRI_bits*) NVIC_BaseAddress+0x41C)
+#define NVIC_PRI0_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x400))
+#define NVIC_PRI1_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x404))
+#define NVIC_PRI2_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x408))
+#define NVIC_PRI3_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x40C))
+#define NVIC_PRI4_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x410))
+#define NVIC_PRI5_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x414))
+#define NVIC_PRI6_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x418))
+#define NVIC_PRI7_REG       ((volatile PRI_bits*) (NVIC_BaseAddress+0x41C))
 
 #define NVIC_APINT_REG      (*(volatile APINT_bits*) (NVIC_BaseAddress+0xD0C))
 
 #define NVIC_SET_ENABLE0    ((volatile u32_t*) 0xE000E100) //0xE000E100
-#define NVIC_SET_ENABLE1    ((volatile u32_t*) NVIC_BaseAddress+ 0x104)
-#define NVIC_SET_ENABLE2    ((volatile u32_t*) NVIC_BaseAddress+ 0x108)
-#define NVIC_SET_ENABLE3    ((volatile u32_t*) NVIC_BaseAddress+ 0x10C)
+#define NVIC_SET_ENABLE1    ((volatile u32_t*) (NVIC_BaseAddress+ 0x104))
+#define NVIC_SET_ENABLE2    ((volatile u32_t*) (NVIC_BaseAddress+ 0x108))
+#define NVIC_SET_ENABLE3    ((volatile u32_t*) (NVIC_BaseAddress+ 0x10C))
 
-#define NVIC_CLEAR_ENABLE0   ((volatile u32_t*)NVIC_BaseAddress+ 0x180)
-#define NVIC_CLEAR_ENABLE1   ((volatile u32_t*)NVIC_BaseAddress+ 0x184)
-#define NVIC_CLEAR_ENABLE2   ((volatile u32_t*)NVIC_BaseAddress+ 0x188)
-#define NVIC_CLEAR_ENABLE3   ((volatile u32_t*)NVIC_BaseAddress+ 0x18C)
+#define NVIC_CLEAR_ENABLE0   ((volatile u32_t*)(NVIC_BaseAddress+ 0x180) )
+#define NVIC_CLEAR_ENABLE1   ((volatile u32_t*)(NVIC_BaseAddress+ 0x184) )
+#define NVIC_CLEAR_ENABLE2   ((volatile u32_t*)(NVIC_BaseAddress+ 0x188) )
+#define NVIC_CLEAR_ENABLE3   ((volatile u32_t*)(NVIC_BaseAddress+ 0x18C) )
 
-#define NVIC_SET_PENDING0    ((volatile u32_t*)NVIC_BaseAddress+ 0x200)
-#define NVIC_SET_PENDING1    ((volatile u32_t*)NVIC_BaseAddress+ 0x204)
-#define NVIC_SET_PENDING2    ((volatile u32_t*)NVIC_BaseAddress+ 0x208)
-#define NVIC_SET_PENDING3    ((volatile u32_t*)NVIC_BaseAddress+ 0x20C)
+#define NVIC_SET_PENDING0    ((volatile u32_t*)(NVIC_BaseAddress+ 0x200) )
+#define NVIC_SET_PENDING1    ((volatile u32_t*)(NVIC_BaseAddress+ 0x204) )
+#define NVIC_SET_PENDING2    ((volatile u32_t*)(NVIC_BaseAddress+ 0x208) )
+#define NVIC_SET_PENDING3    ((volatile u32_t*)(NVIC_BaseAddress+ 0x20C) )
 
-#define NVIC_CLEAR_PENDING0  ((volatile u32_t*)NVIC_BaseAddress+ 0x280)
-#define NVIC_CLEAR_PENDING1  ((volatile u32_t*)NVIC_BaseAddress+ 0x284)
-#define NVIC_CLEAR_PENDING2  ((volatile u32_t*)NVIC_BaseAddress+ 0x288)
-#define NVIC_CLEAR_PENDING3  ((volatile u32_t*)NVIC_BaseAddress+ 0x28C)
+#define NVIC_CLEAR_PENDING0  ((volatile u32_t*)(NVIC_BaseAddress+ 0x280) )
+#define NVIC_CLEAR_PENDING1  ((volatile u32_t*)(NVIC_BaseAddress+ 0x284) )
+#define NVIC_CLEAR_PENDING2  ((volatile u32_t*)(NVIC_BaseAddress+ 0x288) )
+#define NVIC_CLEAR_PENDING3  ((volatile u32_t*)(NVIC_BaseAddress+ 0x28C) )
 
 
 

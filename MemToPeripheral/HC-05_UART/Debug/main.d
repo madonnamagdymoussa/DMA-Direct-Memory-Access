@@ -11,6 +11,8 @@ main.obj: ../DMA.h
 main.obj: ../DMA_config.h
 main.obj: ../UART.h
 main.obj: ../UART_config.h
+main.obj: ../NVIC.h
+main.obj: ../NVIC_config.h
 
 ../main.c:
 
@@ -33,4 +35,8 @@ main.obj: ../UART_config.h
 ../UART.h:
 
 ../UART_config.h:
+
+../NVIC.h:
+
+../NVIC_config.h:
 

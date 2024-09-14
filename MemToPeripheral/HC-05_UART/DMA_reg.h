@@ -18,6 +18,8 @@ extern unsigned char ui8ControlTable[1024];
 #define DMACHMAP1_OFFSET  0x514
 #define DMACHMAP2_OFFSET  0x518
 #define DMACHMAP3_OFFSET  0x51C
+
+#define AlternateControlTable_BaseAddress  (ui8ControlTable + 0x200)
 /**********************************OFFSET*************************************/
 
 /***************************************Base Address of each channel control structure **************************************************/
@@ -53,6 +55,41 @@ extern unsigned char ui8ControlTable[1024];
 #define ChannelControl29_BaseAddress (ui8ControlTable + 0x1D0)
 #define ChannelControl30_BaseAddress (ui8ControlTable + 0x1E0)
 #define ChannelControl31_BaseAddress (ui8ControlTable + 0x1F0)
+
+#define AlternateChannelControl0_BaseAddress  (AlternateControlTable_BaseAddress)
+#define AlternateChannelControl1_BaseAddress  (ui8ControlTable + 0x200 + 0x10)
+#define AlternateChannelControl2_BaseAddress  (ui8ControlTable + 0x200 + 0x20)
+#define AlternateChannelControl3_BaseAddress  (AlternateControlTable_BaseAddress + 0x30)
+#define AlternateChannelControl4_BaseAddress  (AlternateControlTable_BaseAddress + 0x40)
+#define AlternateChannelControl5_BaseAddress  (AlternateControlTable_BaseAddress + 0x50)
+#define AlternateChannelControl6_BaseAddress  (AlternateControlTable_BaseAddress + 0x60)
+#define AlternateChannelControl7_BaseAddress  (AlternateControlTable_BaseAddress + 0x70)
+#define AlternateChannelControl8_BaseAddress  (AlternateControlTable_BaseAddress + 0x80)
+#define AlternateChannelControl9_BaseAddress  (AlternateControlTable_BaseAddress + 0x90)
+#define AlternateChannelControl10_BaseAddress (AlternateControlTable_BaseAddress + 0xA0)
+#define AlternateChannelControl11_BaseAddress (AlternateControlTable_BaseAddress + 0xB0)
+#define AlternateChannelControl12_BaseAddress (AlternateControlTable_BaseAddress + 0xC0)
+#define AlternateChannelControl13_BaseAddress (AlternateControlTable_BaseAddress + 0xD0)
+#define AlternateChannelControl14_BaseAddress (AlternateControlTable_BaseAddress + 0xE0)
+#define AlternateChannelControl15_BaseAddress (AlternateControlTable_BaseAddress + 0xF0)
+#define AlternateChannelControl16_BaseAddress (AlternateControlTable_BaseAddress + 0x100)
+#define AlternateChannelControl17_BaseAddress (AlternateControlTable_BaseAddress + 0x110)
+#define AlternateChannelControl18_BaseAddress (AlternateControlTable_BaseAddress + 0x120)
+#define AlternateChannelControl19_BaseAddress (AlternateControlTable_BaseAddress + 0x130)
+#define AlternateChannelControl20_BaseAddress (AlternateControlTable_BaseAddress + 0x140)
+#define AlternateChannelControl21_BaseAddress (AlternateControlTable_BaseAddress + 0x150)
+#define AlternateChannelControl22_BaseAddress (AlternateControlTable_BaseAddress + 0x160)
+#define AlternateChannelControl23_BaseAddress (AlternateControlTable_BaseAddress + 0x170)
+#define AlternateChannelControl24_BaseAddress (AlternateControlTable_BaseAddress + 0x180)
+#define AlternateChannelControl25_BaseAddress (AlternateControlTable_BaseAddress + 0x190)
+#define AlternateChannelControl26_BaseAddress (AlternateControlTable_BaseAddress + 0x1A0)
+#define AlternateChannelControl27_BaseAddress (AlternateControlTable_BaseAddress + 0x1B0)
+#define AlternateChannelControl28_BaseAddress (AlternateControlTable_BaseAddress + 0x1C0)
+#define AlternateChannelControl29_BaseAddress (AlternateControlTable_BaseAddress + 0x1D0)
+#define AlternateChannelControl30_BaseAddress (AlternateControlTable_BaseAddress + 0x1E0)
+#define AlternateChannelControl31_BaseAddress (AlternateControlTable_BaseAddress + 0x1F0)
+
+
 /***************************************Base Address of each channel control structure **************************************************/
 
 typedef union {
@@ -273,7 +310,42 @@ typedef union{
 #define SourceAddressPointer_31 ((volatile u8_t**)(ChannelControl31_BaseAddress))
 
 
-//ChannelControl14_BaseAddress
+#define AlternateSourceAddressPointer_0  ((volatile u8_t**)(AlternateChannelControl0_BaseAddress))
+#define AlternateSourceAddressPointer_1  ((volatile u8_t**)(AlternateChannelControl1_BaseAddress))
+#define AlternateSourceAddressPointer_2  ((volatile u8_t**)(AlternateChannelControl2_BaseAddress))
+#define AlternateSourceAddressPointer_3  ((volatile u8_t**)(AlternateChannelControl3_BaseAddress))
+#define AlternateSourceAddressPointer_4  ((volatile u8_t**)(AlternateChannelControl4_BaseAddress))
+#define AlternateSourceAddressPointer_5  ((volatile u8_t**)(AlternateChannelControl5_BaseAddress))
+#define AlternateSourceAddressPointer_6  ((volatile u8_t**)(AlternateChannelControl6_BaseAddress))
+#define AlternateSourceAddressPointer_7  ((volatile u8_t**)(AlternateChannelControl7_BaseAddress))
+#define AlternateSourceAddressPointer_8  ((volatile u8_t**)(AlternateChannelControl8_BaseAddress))
+#define AlternateSourceAddressPointer_9  ((volatile u8_t**)(AlternateChannelControl9_BaseAddress))
+#define AlternateSourceAddressPointer_10 ((volatile u8_t**)(AlternateChannelControl10_BaseAddress))
+#define AlternateSourceAddressPointer_11 ((volatile u8_t**)(AlternateChannelControl11_BaseAddress))
+#define AlternateSourceAddressPointer_12 ((volatile u8_t**)(AlternateChannelControl12_BaseAddress))
+#define AlternateSourceAddressPointer_13 ((volatile u8_t**)(AlternateChannelControl13_BaseAddress))
+#define AlternateSourceAddressPointer_14 ((volatile u8_t**)(AlternateChannelControl14_BaseAddress))
+#define AlternateSourceAddressPointer_15 ((volatile u8_t**)(AlternateChannelControl15_BaseAddress))
+#define AlternateSourceAddressPointer_16 ((volatile u8_t**)(AlternateChannelControl16_BaseAddress))
+#define AlternateSourceAddressPointer_17 ((volatile u8_t**)(AlternateChannelControl17_BaseAddress))
+#define AlternateSourceAddressPointer_18 ((volatile u8_t**)(AlternateChannelControl18_BaseAddress))
+#define AlternateSourceAddressPointer_19 ((volatile u8_t**)(AlternateChannelControl19_BaseAddress))
+#define AlternateSourceAddressPointer_20 ((volatile u8_t**)(AlternateChannelControl20_BaseAddress))
+#define AlternateSourceAddressPointer_21 ((volatile u8_t**)(AlternateChannelControl21_BaseAddress))
+#define AlternateSourceAddressPointer_22 ((volatile u8_t**)(AlternateChannelControl22_BaseAddress))
+#define AlternateSourceAddressPointer_23 ((volatile u8_t**)(AlternateChannelControl23_BaseAddress))
+#define AlternateSourceAddressPointer_24 ((volatile u8_t**)(AlternateChannelControl24_BaseAddress))
+#define AlternateSourceAddressPointer_25 ((volatile u8_t**)(AlternateChannelControl25_BaseAddress))
+#define AlternateSourceAddressPointer_26 ((volatile u8_t**)(AlternateChannelControl26_BaseAddress))
+#define AlternateSourceAddressPointer_27 ((volatile u8_t**)(AlternateChannelControl27_BaseAddress))
+#define AlternateSourceAddressPointer_28 ((volatile u8_t**)(AlternateChannelControl28_BaseAddress))
+#define AlternateSourceAddressPointer_29 ((volatile u8_t**)(AlternateChannelControl29_BaseAddress))
+#define AlternateSourceAddressPointer_30 ((volatile u8_t**)(AlternateChannelControl30_BaseAddress))
+#define AlternateSourceAddressPointer_31 ((volatile u8_t**)(AlternateChannelControl31_BaseAddress))
+
+
+
+
 #define DestinationAddressPointer_0  ((volatile u8_t**)(ChannelControl0_BaseAddress + DMADSTENDP_OFFSET))
 #define DestinationAddressPointer_1  ((volatile u8_t**)(ChannelControl1_BaseAddress + DMADSTENDP_OFFSET))
 #define DestinationAddressPointer_2  ((volatile u8_t**)(ChannelControl2_BaseAddress + DMADSTENDP_OFFSET))
@@ -306,6 +378,46 @@ typedef union{
 #define DestinationAddressPointer_29 ((volatile u8_t**)(ChannelControl29_BaseAddress + DMADSTENDP_OFFSET))
 #define DestinationAddressPointer_30 ((volatile u8_t**)(ChannelControl30_BaseAddress + DMADSTENDP_OFFSET))
 #define DestinationAddressPointer_31 ((volatile u8_t**)(ChannelControl31_BaseAddress + DMADSTENDP_OFFSET))
+
+
+#define DestinationAddressPointer9_UART  ((volatile u32_t**)(ChannelControl9_BaseAddress + DMADSTENDP_OFFSET))
+#define DestinationAddressPointer23_UART ((volatile u32_t**)(ChannelControl23_BaseAddress + DMADSTENDP_OFFSET))
+
+
+#define AlternateDestinationAddressPointer_0  ((volatile u8_t**)(AlternateChannelControl0_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_1  ((volatile u8_t**)(AlternateChannelControl1_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_2  ((volatile u8_t**)(AlternateChannelControl2_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_3  ((volatile u8_t**)(AlternateChannelControl3_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_4  ((volatile u8_t**)(AlternateChannelControl4_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_5  ((volatile u8_t**)(AlternateChannelControl5_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_6  ((volatile u8_t**)(AlternateChannelControl6_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_7  ((volatile u8_t**)(AlternateChannelControl7_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_8  ((volatile u8_t**)(AlternateChannelControl8_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_9  ((volatile u8_t**)(AlternateChannelControl9_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_10 ((volatile u8_t**)(AlternateChannelControl10_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_11 ((volatile u8_t**)(AlternateChannelControl11_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_12 ((volatile u8_t**)(AlternateChannelControl12_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_13 ((volatile u8_t**)(AlternateChannelControl13_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_14 ((volatile u8_t**)(AlternateChannelControl14_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_15 ((volatile u8_t**)(AlternateChannelControl15_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_16 ((volatile u8_t**)(AlternateChannelControl16_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_17 ((volatile u8_t**)(AlternateChannelControl17_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_18 ((volatile u8_t**)(AlternateChannelControl18_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_19 ((volatile u8_t**)(AlternateChannelControl19_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_20 ((volatile u8_t**)(AlternateChannelControl20_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_21 ((volatile u8_t**)(AlternateChannelControl21_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_22 ((volatile u8_t**)(AlternateChannelControl22_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_23 ((volatile u8_t**)(AlternateChannelControl23_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_24 ((volatile u8_t**)(AlternateChannelControl24_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_25 ((volatile u8_t**)(AlternateChannelControl25_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_26 ((volatile u8_t**)(AlternateChannelControl26_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_27 ((volatile u8_t**)(AlternateChannelControl27_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_28 ((volatile u8_t**)(AlternateChannelControl28_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_29 ((volatile u8_t**)(AlternateChannelControl29_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_30 ((volatile u8_t**)(AlternateChannelControl30_BaseAddress + DMADSTENDP_OFFSET))
+#define AlternateDestinationAddressPointer_31 ((volatile u8_t**)(AlternateChannelControl31_BaseAddress + DMADSTENDP_OFFSET))
+
+
 
 
 #define DMA_ChannelControlWord_0   ((volatile DMACHCTL_Reg*)(ChannelControl0_BaseAddress + DMACHCTL_OFFSET))
@@ -341,6 +453,43 @@ typedef union{
 #define DMA_ChannelControlWord_30  ((volatile DMACHCTL_Reg*)(ChannelControl30_BaseAddress + DMACHCTL_OFFSET))
 #define DMA_ChannelControlWord_31  ((volatile DMACHCTL_Reg*)(ChannelControl31_BaseAddress + DMACHCTL_OFFSET))
 
+
+#define AlternateDMA_ChannelControlWord_0   ((volatile DMACHCTL_Reg*)(AlternateChannelControl0_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_1   ((volatile DMACHCTL_Reg*)(AlternateChannelControl1_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_2   ((volatile DMACHCTL_Reg*)(AlternateChannelControl2_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_3   ((volatile DMACHCTL_Reg*)(AlternateChannelControl3_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_4   ((volatile DMACHCTL_Reg*)(AlternateChannelControl4_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_5   ((volatile DMACHCTL_Reg*)(AlternateChannelControl5_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_6   ((volatile DMACHCTL_Reg*)(AlternateChannelControl6_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_7   ((volatile DMACHCTL_Reg*)(AlternateChannelControl7_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_8   ((volatile DMACHCTL_Reg*)(AlternateChannelControl8_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_9   ((volatile DMACHCTL_Reg*)(AlternateChannelControl9_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_10  ((volatile DMACHCTL_Reg*)(AlternateChannelControl10_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_11  ((volatile DMACHCTL_Reg*)(AlternateChannelControl11_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_12  ((volatile DMACHCTL_Reg*)(AlternateChannelControl12_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_13  ((volatile DMACHCTL_Reg*)(AlternateChannelControl13_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_14  ((volatile DMACHCTL_Reg*)(AlternateChannelControl14_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_15  ((volatile DMACHCTL_Reg*)(AlternateChannelControl15_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_16  ((volatile DMACHCTL_Reg*)(AlternateChannelControl16_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_17  ((volatile DMACHCTL_Reg*)(AlternateChannelControl17_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_18  ((volatile DMACHCTL_Reg*)(AlternateChannelControl18_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_19  ((volatile DMACHCTL_Reg*)(AlternateChannelControl19_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_20  ((volatile DMACHCTL_Reg*)(AlternateChannelControl20_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_21  ((volatile DMACHCTL_Reg*)(AlternateChannelControl21_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_22  ((volatile DMACHCTL_Reg*)(AlternateChannelControl22_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_23  ((volatile DMACHCTL_Reg*)(AlternateChannelControl23_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_24  ((volatile DMACHCTL_Reg*)(AlternateChannelControl24_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_25  ((volatile DMACHCTL_Reg*)(AlternateChannelControl25_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_26  ((volatile DMACHCTL_Reg*)(AlternateChannelControl26_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_27  ((volatile DMACHCTL_Reg*)(AlternateChannelControl27_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_28  ((volatile DMACHCTL_Reg*)(AlternateChannelControl28_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_29  ((volatile DMACHCTL_Reg*)(AlternateChannelControl29_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_30  ((volatile DMACHCTL_Reg*)(AlternateChannelControl30_BaseAddress + DMACHCTL_OFFSET))
+#define AlternateDMA_ChannelControlWord_31  ((volatile DMACHCTL_Reg*)(AlternateChannelControl31_BaseAddress + DMACHCTL_OFFSET))
+
+
+
+
 #define DMAChannelSoftwareRequest_Register   *((volatile u32_t*)(DMA_BASE+DMASWREQ_OFFSET))
 #define DMAChannelInterruptStatus            ((volatile DMACHIS_Reg*)(DMA_BASE + 0x504))
 #define DMAChannelPrioritySet_Reg            *((volatile u32_t*)(DMA_BASE+ 0x038))
@@ -351,6 +500,8 @@ typedef union{
 #define DMAChannelRequestMaskClear           *((volatile u32_t *)(DMA_BASE + 0x024))
 #define DMAChannelUseBurstClear_Reg          *((volatile u32_t *)(DMA_BASE + 0x01C))
 #define DMAChannelPrimaryAlternateClear_Reg  *((volatile u32_t *)(DMA_BASE + 0x034))
+#define DMAChannelUseBurstSet_Reg            *((volatile u32_t *)(DMA_BASE + 0x018))
+
 
 #define DMA_ChannelMapSelect0_Reg                ((volatile u32_t*)(DMA_BASE + DMACHMAP0_OFFSET))
 #define DMA_ChannelMapSelect1_Reg                ((volatile u32_t*)(DMA_BASE + DMACHMAP1_OFFSET))
