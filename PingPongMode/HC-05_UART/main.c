@@ -35,6 +35,20 @@ int main(void)
 
       GPTM_GenerateDelay(GPTM_Config_ArrPtrStruct[0], 10, milli_Sec);*/
 
+
+
+     //*******************Code for Mem To Mem*******************
+    /*DMA_PeripheralInitialization();
+
+    DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[3] , &DestBuffer_DMA[3] );
+    DMA_EnableChannelAttributes(Pt_DMAChannel30_MemToMem);
+    DMA_AssignChannel(DMAChannel_30, EncodingNum_0);
+    DMA_EnableChannel(DMAChannel_30);
+    DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
+    DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_30);
+    DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_30);*/
+
+
      //*******************Code for Mem To pheripheral Transmit *******************
       UART_Initialization(&UARTChannel1_Config, GPIO_AFSELUARTConfig_ArrPtrStruct[1]);
 
@@ -44,9 +58,9 @@ int main(void)
 
       DMA_ConfigurePriority(SetHighPriorityChannel, DMAChannel_23);
 
-      //DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
+      /*==================interrupt enable======================*/
+      DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
       //DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_23);
-      //DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_22);
 
       UART_Transmit_DMA(UART_Channel1,  &SourceBuffer_DMA[0], DMAChannel_23);
       DMA_EnableChannel(DMAChannel_23);
@@ -63,29 +77,19 @@ int main(void)
       UART_Receive_DMA(UART_Channel1);
       DMA_EnableChannel(DMAChannel_22);
       DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
-      //DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
+      DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_22);
 
-
-      //*******************Code for Mem To Mem*******************
-
-     /*DMA_PeripheralInitialization();
-
-     DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[3] , &DestBuffer_DMA[3] );
-     DMA_EnableChannelAttributes(Pt_DMAChannel30_MemToMem);
-     DMA_AssignChannel(DMAChannel_30, EncodingNum_0);
-     DMA_EnableChannel(DMAChannel_30);
-     DMA_ConfigurePeripheralInterrupt(EnableInterrupt);
-     DMA_ConfigureChannelInterrupt(EnableInterrupt, DMAChannel_30);
-     DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_30);*/
 
 
     while(1){
 
-        UART_DMA_Reload_PrimaryControlStructure(UART_Channel1, &DestBufferA[0]);
+        /* UART_DMA_Reload_PrimaryControlStructure(UART_Channel1, &DestBufferA[0]);
         DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
 
         UART_DMA_Reload_AlternateControlStructure(UART_Channel1, &DestBufferB[0]);
-        DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
+        DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);*/
+
+
 
 
         //DMA_EnableChannelAttributes(DMA_ChannelsConfigRX[1]);

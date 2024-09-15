@@ -44,7 +44,7 @@ DMA_ConfigurationChannel_t  DMAChannel22_UARTChannel1RX={
      EncodingNum_0,
      _1_Transfer ,
      DMA_SingleRequest,
-     1
+     0
 };
 
 DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
@@ -58,7 +58,7 @@ DMA_ConfigurationChannel_t  DMAChannel23_UARTChannel1TX={
      EncodingNum_0,
      _1_Transfer ,
      DMA_SingleRequest,
-     1
+     0
 };
 
 /****************************************************************************************************/

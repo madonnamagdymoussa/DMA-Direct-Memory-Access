@@ -163,37 +163,32 @@ int FindChannelNum_InterruptSource(){
 
 }*/
 
+/*========================================Mem To Mem Mode====================================================*/
+   /*DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9 =1; //clear the interrupt
+
+   DMA_PeripheralInitialization();
+   DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[2] , &DestBuffer_DMA[2] );
+   DMA_EnableChannel(DMAChannel_30);
+   DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_30);*/
+
+
 DMA_SoftwareTransferHandler(){
 
-    /*========================================Mem To Mem Mode====================================================*/
-       /*DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_9 =1; //clear the interrupt
-
-       DMA_PeripheralInitialization();
-       DMA_ChannelControlStructureSet(Pt_DMAChannel30_MemToMem, &SourceBuffer_DMA[2] , &DestBuffer_DMA[2] );
-       DMA_EnableChannel(DMAChannel_30);
-       DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_30);*/
-
-           DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_22 =1; //clear the interrupt
-
            if(1==DMA_InterruptFlag){
-            DMA_EnableChannelAttributes(DMA_ChannelsConfigRX[1]);
-            UART_DMA_Reload_AlternateControlStructure(UART_Channel1, &DestBufferB[0]);
 
-            UART_Receive_DMA(UART_Channel1);
-            DMA_EnableChannel(DMAChannel_22);
-            DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
-           }
-           else{
-
-               DMA_EnableChannelAttributes(DMA_ChannelsConfigRX[1]);
                UART_DMA_Reload_PrimaryControlStructure(UART_Channel1, &DestBufferA[0]);
-               UART_Receive_DMA(UART_Channel1);
-               DMA_EnableChannel(DMAChannel_22);
+               DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
+
+           }
+           else if(0 == DMA_InterruptFlag){
+
+               UART_DMA_Reload_AlternateControlStructure(UART_Channel1, &DestBufferB[0]);
                DMA_ConfigureChannelSoftwareRequest(EnableSoftwareRequest , DMAChannel_22);
 
            }
 
            DMA_InterruptFlag ^=1;
+           DMAChannelInterruptStatus->Bits.ChannelInterruptStatus_22 =1; //clear the interrupt
 
 
  }
